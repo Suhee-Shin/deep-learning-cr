@@ -1,0 +1,23 @@
+﻿# Environment
+.venv/
+venv/
+.env
+env/
+
+# Bytecode
+__pycache__/
+*.py[cod]
+
+# Distribution
+*.egg-info/
+*.dist-info/
+pip-wheel-metadata/
+
+# Editors
+.vscode/
+.idea/
+
+# Logs / conventionals
+*.log
+*.sqlite3
+ipynb_checkpoints/
