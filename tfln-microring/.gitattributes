@@ -1,0 +1,2 @@
+# Preserve original solver/data bytes across Windows and Linux checkouts.
+* -text

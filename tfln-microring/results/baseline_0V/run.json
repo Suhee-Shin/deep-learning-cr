@@ -1,0 +1,84 @@
+{
+  "fingerprint": "f0064b6e0292664592610be8f934e128b4ed89ab5e5fd452d7830436ab0df3d2",
+  "parameters": {
+    "radius_um": 20.0,
+    "mesh_um": 0.1,
+    "mesh_z_um": 0.05,
+    "steps": 80000,
+    "pml_cells": 8,
+    "precision": "float32",
+    "device": "cuda",
+    "voltages": [
+      0.0
+    ],
+    "effective_distance_um": 2.5,
+    "arc_start_deg": 135.0,
+    "arc_span_deg": 180.0,
+    "substrate_index": 1.444
+  },
+  "code_hashes": {
+    "examples/linbo3_rib_voltage.py": "6cef1c6016a04079fe81cb7fa34a628116a8f301977d63f719120cee681b5e64",
+    "torchfdtd/electro_optic.py": "a72d879c77401dc4f744370d773c61f29aa4a31dcab6898f3d429b36599f1704",
+    "torchfdtd/anisotropy.py": "69283799e2c080abd08e003ffc83c75bad7104334798578deb4f8f8268f2d4a7",
+    "torchfdtd/differentiable.py": "bb49fb63d49cc4a277a9572749988f708f8fab84f0204bfb2ccbb10f95142c01",
+    "torchfdtd/tensor_linalg.py": "d4eb6256619bd306204fb28a85e6ceeedb946c617440842358135af90eecf026"
+  },
+  "execution_environment": {
+    "torch": "2.6.0+cu118",
+    "cuda_build": "11.8",
+    "gpu": "NVIDIA RTX 5880 Ada Generation"
+  },
+  "project_json_role": "Source/monitor/grid description only; run this script to reconstruct dielectric tensors",
+  "grid": [
+    446,
+    446,
+    78
+  ],
+  "time_step_s": 1.3481520190852315e-16,
+  "duration_s": 1.0785216152681852e-11,
+  "lab_z_of_sim_origin_um": -0.04999999999999993,
+  "six_field_bytes": 372370752,
+  "status": "traces_complete_not_resonance_validated",
+  "limitations": [
+    "Isolated ring: intrinsic modes, no loaded bus response",
+    "Local radial excitation; TE0 identity not verified",
+    "Effective radial DC field confined to ring footprint; no electrostatic fringing or metal loss",
+    "Staircase interfaces, nondispersive optical indices; convergence required",
+    "Short default run is a throughput profile, not resonance data"
+  ],
+  "reservation": {
+    "memory_reservation_bytes": 18321276056,
+    "workspace_reservation_bytes": 6330302936,
+    "workspace_model": "conservative_tensor_bound",
+    "workspace_components_bytes": {
+      "tensor_workspace_bound": 6330302784,
+      "source_profiles": 0,
+      "source_injection": 8,
+      "observation_gathers": 144
+    },
+    "allocation_headroom_bytes": 0,
+    "device_checkpoint_reservation_bytes": 0,
+    "device_staging_reservation_bytes": 0,
+    "spectral_library_reservation_bytes": 0,
+    "history_reservation_bytes": 8000000,
+    "output_history_bytes": 3840000,
+    "source_history_bytes": 320000,
+    "observation_index_bytes": 192,
+    "observer_layout_bytes": 0,
+    "observer_preparation_bytes": 0,
+    "material_packing_reservation_bytes": 0,
+    "restart_state_bytes": 436808832,
+    "host_checkpoint_reservation_bytes": 0,
+    "disk_checkpoint_reservation_bytes": 0,
+    "host_source_validation_bytes": 0,
+    "host_reservation_bytes": 0,
+    "gpu_reservation_bytes": 18321276056,
+    "budgeted_resident": false,
+    "tensor_reservation_bytes": 11982972928,
+    "tensor_cuda_library_allowance_bytes": 67108864
+  },
+  "completed_indices": [
+    0
+  ],
+  "public_export_note": "Local executable path and hostname removed; numerical data and run fingerprint unchanged."
+}

@@ -1,0 +1,36 @@
+{
+  "role": "CAD visualization only; do not run for physical voltage tuning",
+  "fixed_geometry": {
+    "radius_um": 20,
+    "ridge_width_um": 1.4,
+    "ln_total_um": 0.6,
+    "slab_um": 0.1,
+    "substrate_um": 2,
+    "electrode_arc_start_deg": 135,
+    "electrode_arc_end_deg": 315,
+    "radial_metal_edge_gap_um": 5
+  },
+  "exploratory_geometry": {
+    "metal_width_um": 2,
+    "metal_thickness_um": 0.4,
+    "signal_pad_um": [
+      8,
+      8
+    ],
+    "ground_pad_um": [
+      10,
+      10
+    ],
+    "lead_width_um": 2,
+    "bus_width_um": 1.4
+  },
+  "topology": "Single left-ring visualization inspired by Fig7: CP90/CP30, not a complete cascade",
+  "signal_pad": "inside ring; small illustrative probe/contact pad, not a qualified wire-bond pad",
+  "terminal_definition": "V_SG=V_S-V_G; positive S voltage drives field radially outward",
+  "limitations": [
+    "No electrical boundary conditions encoded in server CAD schema",
+    "Colored metal placeholders use index=1, not optical metal parameters",
+    "LN CAD index is scalar for layout only; this JSON is not the full-tensor EO simulation",
+    "Pad geometry not electrostatically optimized or fabrication-qualified"
+  ]
+}

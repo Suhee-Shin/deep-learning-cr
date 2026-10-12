@@ -1,0 +1,59 @@
+{
+  "purpose": "Develop and optimize the paper concept; do not treat missing paper parameters as prerequisites",
+  "status": "research_configuration_not_simulation_results",
+  "voltage_definition": "V_SG = V_signal - V_ground",
+  "reference_voltage_v": 0.0,
+  "baseline": {
+    "radius_um": 20.0,
+    "ridge_width_um": 1.4,
+    "ln_thickness_um": 0.6,
+    "etch_depth_um": 0.5,
+    "substrate_thickness_um": 2.0,
+    "crystal_cut": "X",
+    "crystal_z_lab_azimuth_deg": 45.0,
+    "wavelength_band_um": [1.52, 1.58],
+    "target_mode": "TE0; mode identity must be verified",
+    "top_cladding": "air"
+  },
+  "stages": [
+    {
+      "name": "signed_voltage_baseline",
+      "voltages_v_in_execution_order": [0.0, -1.0, 1.0, -2.0, 2.0],
+      "field_model": "effective_radial_arc",
+      "effective_distance_um": 2.5,
+      "arc_start_lab_deg": 135.0,
+      "arc_span_deg": 180.0,
+      "observables": ["resonance_shift_relative_to_0V", "mode_identity", "loaded_or_intrinsic_Q_as_applicable"],
+      "acceptance": "Require same mode across voltage points and mesh/time convergence before quantitative sensitivity claims"
+    },
+    {
+      "name": "electrode_screening",
+      "strategy": "one-variable screening first, then refine promising combinations",
+      "arc_start_lab_deg_candidates": [0, 45, 90, 135, 180, 225, 270, 315],
+      "arc_span_deg_candidates": [90, 135, 180],
+      "effective_distance_um_candidates": [2.0, 2.5, 3.0, 4.0],
+      "effective_distance_role": "surrogate field-strength parameter, not a physical gap optimization",
+      "physical_gap_um_candidates_for_electrostatics": [3.5, 5.0, 6.5],
+      "constraint": "Electrode and coupling sectors must not overlap; use actual topology when evaluating this constraint",
+      "acceptance": "Effective-field screening must be checked with electrostatics and optical electrode loss before physical electrode ranking"
+    },
+    {
+      "name": "coupling_and_cascade",
+      "bus_width_um_candidates": [1.2, 1.4, 1.6],
+      "coupling_gap_um_candidates": [0.1, 0.15, 0.2, 0.3],
+      "ring_count_candidates": [5, 10, 12, 20, 30],
+      "strategy": "Fit a reduced coupled-ring model to validated single-ring spectra; validate selected full-wave cases",
+      "objectives": ["increase absolute tuning sensitivity", "retain Q and useful transmission", "reduce required drive", "reduce target transfer-function error"],
+      "ranking": "Pareto comparison; no unprovided objective weights or target error tolerances assumed",
+      "bias_control_mapping": "Fit from zero-voltage resonance and selected laser; do not hard-code positive bias plus control"
+    }
+  ],
+  "provenance": "Candidate sets and stage ordering are exploratory engineering choices, not values asserted by the paper",
+  "execution_policy": {
+    "large_jobs_concurrent": 1,
+    "check_gpu_before_large_run": true,
+    "resume_completed_cases": true,
+    "save_raw_traces_and_parameters": true,
+    "report_optimum_only_after_actual_evaluation": true
+  }
+}

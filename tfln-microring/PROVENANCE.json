@@ -1,0 +1,21 @@
+{
+  "upstream": "https://github.com/hyoseokp/TorchFDTD",
+  "upstream_commit": "860e8772f2b922d43d988dbd058ff51cbe8c605e",
+  "modifications": [
+    "electro-optic Pockels tensor module",
+    "bounded 3x3 tensor linear algebra",
+    "X-cut principal-axis simulation coordinates",
+    "rib ring runner and ringdown analyzer"
+  ],
+  "baseline_completed_kst": "2026-10-09T23:58:35+09:00",
+  "baseline_runtime_s": 18294.80970819993,
+  "paper": "https://arxiv.org/abs/2603.12934",
+  "scope": "Baseline isolated-ring effective-field research; no validated nonzero-voltage tuning result",
+  "original_code_hashes": {
+    "examples/linbo3_rib_voltage.py": "6cef1c6016a04079fe81cb7fa34a628116a8f301977d63f719120cee681b5e64",
+    "torchfdtd/electro_optic.py": "a72d879c77401dc4f744370d773c61f29aa4a31dcab6898f3d429b36599f1704",
+    "torchfdtd/anisotropy.py": "69283799e2c080abd08e003ffc83c75bad7104334798578deb4f8f8268f2d4a7",
+    "torchfdtd/differentiable.py": "bb49fb63d49cc4a277a9572749988f708f8fab84f0204bfb2ccbb10f95142c01",
+    "torchfdtd/tensor_linalg.py": "d4eb6256619bd306204fb28a85e6ceeedb946c617440842358135af90eecf026"
+  }
+}
