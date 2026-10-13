@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TiO2 Y-pass 실시간 평가</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff;color:#24282b;font:15px/1.55 system-ui,sans-serif;letter-spacing:0}
+header{border-bottom:1px solid #ccd3d5;background:#f3f6f6;padding:22px max(20px,calc((100% - 1240px)/2))}h1{font-size:25px;margin:0 0 5px}h2{font-size:18px;margin:0 0 12px}p{margin:5px 0}
+main{max-width:1280px;padding:0 20px 28px;margin:auto}section{padding:22px 0;border-bottom:1px solid #dce2e3}.status{font-weight:650;color:#00776b}.error{color:#b02d2d}.muted{color:#58656b}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.stats b{display:block;font-size:25px;font-variant-numeric:tabular-nums}.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:26px}img{width:100%;height:auto;display:block}figure{margin:0}figcaption{font-size:13px;color:#606b70}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}th,td{padding:9px 8px;text-align:right;white-space:nowrap;border-bottom:1px solid #dde3e3}th:first-child,td:first-child{text-align:left}th{background:#f4f6f6;font-size:13px}.good{color:#00776b}.bad{color:#af4937}a{color:#2464a3}code{overflow-wrap:anywhere}.details{overflow-wrap:anywhere}#plot[hidden],#shape[hidden]{display:none}@media(max-width:760px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}h1{font-size:22px}main{padding:0 14px}header{padding:18px 14px}}
+</style></head><body>
+<header><h1>TiO₂ Y-pass 편광 필터</h1><p class="muted" id="geometry">4 × 4 µm 주기 셀 · 높이 1 µm · 10 nm voxel · Fourier order 10</p><p id="status" class="status">실행 대기</p></header>
+<main><section><div class="stats"><div>추가 평가 step<b id="step">— / 200</b></div><div>Binary 평균 TY<b id="ty">—</b></div><div>Binary 평균 TX<b id="tx">—</b></div><div>Binary 최소 TY−TX<b id="delta">—</b></div></div>
+<p id="activity" class="details muted"></p><p id="times" class="muted"></p><p id="limits" class="muted">목표: 모든 평가 파장에서 TY &gt; 80%, TX &lt; 10%. 제작 가능성·연속 대역 성능은 별도 검증 대상입니다.</p></section>
+<div class="layout"><section><h2>Step별 Gray / Binary 성능</h2><figure><img id="plot" alt="Step별 투과율, 소광비, 투과도 차분" hidden><figcaption id="plot-caption">첫 평가 완료 후 그래프가 표시됩니다.</figcaption></figure></section>
+<section><h2>최근 Binary 파장별 결과</h2><p class="muted" id="wavelengths">최적화 4-point: 400 / 500 / 600 / 700 nm</p><div class="table-wrap"><table><thead><tr><th>파장</th><th>TX (%)</th><th>TY (%)</th><th>TY−TX</th><th>ER (dB)</th></tr></thead><tbody id="spectrum"></tbody></table></div>
+<h2 style="margin-top:25px">추가 파장 검증</h2><p id="holdout-step" class="muted">아직 평가 없음</p><div class="table-wrap"><table><thead><tr><th>파장</th><th>TX (%)</th><th>TY (%)</th><th>TY−TX</th><th>ER (dB)</th></tr></thead><tbody id="holdout"></tbody></table></div>
+<h2 style="margin-top:25px">최근 구조</h2><img id="shape" alt="최근 Gray 밀도와 Binary 구조의 3D 비교" hidden><p id="origin" class="details muted"></p></section></div>
+<section><h2>결과 파일</h2><p><a href="history.csv">Step별 CSV</a> · <a href="spectra.csv">파장별 CSV</a> · <a href="REPORT_KO.md">한글 결과 보고서</a> · <a href="worker.log">계산 로그</a> · <a href="best.json">최고 Binary 후보</a></p><p class="muted">RCWA: 수직 입사, TiO₂/air, 반무한 SiO₂ 기판. 하부 컬러라우터를 포함한 평가가 아닙니다.</p></section></main>
+<script>
+let seen=0,plotTime=null,observed=0,currentState='';
+const el=id=>document.getElementById(id), stamp=v=>v?new Date(v*1000).toLocaleString('ko-KR'):'아직 없음';
+function rows(id,spectrum){const body=el(id);body.replaceChildren();for(const s of spectrum||[]){const tr=document.createElement('tr');const pass=s.ty>.8&&s.tx<.1;const vals=[s.wavelength_nm+' nm',(s.tx*100).toFixed(2),(s.ty*100).toFixed(2),s.delta.toFixed(4),s.er_db.toFixed(2)];vals.forEach((v,i)=>{let td=document.createElement('td');td.textContent=v;if(i===1||i===2)td.className=pass?'good':'bad';tr.append(td)});body.append(tr)}}
+window.receiveStatus=d=>{seen=Date.now();observed=d.observed_at;const s=d.supervisor?.status?d.supervisor:(d.run||{}),r=d.latest||{},c=d.config||{},iter=d.iteration||{};currentState=s.status;
+if(c.period_um)el('geometry').textContent=c.period_um+' × '+c.period_um+' µm 주기 셀 · 높이 '+(c.layers*c.layer_height_nm/1000)+' µm · '+c.actual_pixel_nm+' nm XY grid · Fourier order '+c.orders;
+if(c.wavelengths)el('wavelengths').textContent='최적화 '+c.wavelengths.split(',').length+'-point: '+c.wavelengths.split(',').join(' / ')+' nm';
+el('status').textContent=({running:'계산 진행 중',completed:'추가 업데이트 완료',paused:'체크포인트에서 일시 중단',error:'오류로 중단',preparing:'시작 구조 준비 중',ready:'GPU PC 실행 대기'}[s.status]||s.status||'실행 대기');el('status').className=s.status==='error'?'error':'status';
+el('step').textContent=(r.step??'—')+' / '+(c.max_updates??200);
+el('tx').textContent=r.bin_mean_tx!=null?(100*r.bin_mean_tx).toFixed(2)+'%':'—';el('ty').textContent=r.bin_mean_ty!=null?(100*r.bin_mean_ty).toFixed(2)+'%':'—';el('delta').textContent=r.bin_min_delta!=null?r.bin_min_delta.toFixed(4):'—';
+el('activity').textContent=s.error||['현재 계산 step '+(iter.step??'—'),iter.detail||iter.phase||'',s.worker_pid?'PID '+s.worker_pid:''].filter(Boolean).join(' · ');
+el('times').textContent='프로세스 확인: '+stamp(d.observed_at)+' | 마지막 평가 저장: '+stamp(d.evaluated_at);
+rows('spectrum',r.bin_spectrum);rows('holdout',d.holdout?.holdout_spectrum);el('holdout-step').textContent=d.holdout?.step!=null?'추가 step '+d.holdout.step+' 검증 · 학습에는 미사용':'아직 평가 없음';
+if(d.plots_at&&plotTime!==d.plots_at){el('plot').src='performance.png?v='+d.plots_at;el('plot').hidden=false;plotTime=d.plots_at;el('plot-caption').textContent='그래프 갱신: '+stamp(d.plots_at)+' · ER = 10 log10(TY/TX)';}
+if(d.structures?.length){el('shape').src='snapshots/'+encodeURIComponent(d.structures[0]);el('shape').hidden=false;}
+el('origin').textContent=d.seed.source_evaluated_step!=null?'X 체크포인트: '+d.seed.source_evaluated_step+' 평가 후 '+d.seed.source_updates_completed+'회 업데이트. XY 평면 90° 회전, Adam 상태 보존. 회전 후 성능은 실제 평가값만 표시.':'원본 체크포인트 연결 정보 없음. 별도 테스트 또는 실행 준비 상태입니다.';
+if(currentState==='running'&&Date.now()/1000-observed>45){el('status').textContent='프로세스 상태 갱신 지연: supervisor 확인 필요';el('status').className='error'}
+};
+function poll(){document.getElementById('feed')?.remove();const script=document.createElement('script');script.id='feed';script.src='status.js?v='+Date.now();document.body.append(script);if(seen&&Date.now()-seen>35000){el('status').textContent='상태 파일 갱신 확인 필요';el('status').className='error'}}
+poll();setInterval(poll,5000);
+</script></body></html>

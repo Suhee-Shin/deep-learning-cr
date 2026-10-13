@@ -1,0 +1,7 @@
+{
+  "source_evaluated_step": 125,
+  "source_updates_completed": 126,
+  "beta": 4.5,
+  "rotation": "np.rot90(k=1, axes=(1,2))",
+  "adam_updates": 126
+}
