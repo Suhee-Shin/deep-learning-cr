@@ -1,0 +1,28 @@
+{
+  "solver": {
+    "period_um": 4.0,
+    "grid": 400,
+    "layers": 100,
+    "layer_height_nm": 10,
+    "detector_gap_um": 0.35,
+    "orders": 10,
+    "rayleigh_nudge": 0.0001,
+    "detector_samples": 128
+  },
+  "source": "normal incidence, independent unit Ex and unit Ey monochromatic plane waves",
+  "source_E_amplitude": 1.0,
+  "output_propagation_um": 1.35,
+  "structure_sha256": {
+    "X": "c3c068fab32f8d0505b5b21c28409044cb25c627944433e5b5649a53406e343e",
+    "Y": "fcb0e0acee8015d5fbc1459ee7f0ac4f9ebd0db04560b32bd2646648b415194d"
+  },
+  "wavelengths_nm": [
+    400,
+    450,
+    500,
+    550,
+    600,
+    650,
+    700
+  ]
+}

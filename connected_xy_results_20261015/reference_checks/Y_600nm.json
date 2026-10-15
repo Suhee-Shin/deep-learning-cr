@@ -1,0 +1,8 @@
+{
+  "filter": "Y",
+  "wavelength_nm": 600,
+  "tx": 0.23333289581280786,
+  "ty": 0.839216477805806,
+  "orders": 10,
+  "sha256": "fcb0e0acee8015d5fbc1459ee7f0ac4f9ebd0db04560b32bd2646648b415194d"
+}

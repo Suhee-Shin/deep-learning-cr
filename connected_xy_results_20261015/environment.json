@@ -1,0 +1,13 @@
+{
+  "python": "3.12.7",
+  "gpu": "NVIDIA RTX 5880 Ada Generation",
+  "torch": "2.9.0+cu128",
+  "cuda": "12.8",
+  "packages": {
+    "numpy": "2.2.6",
+    "scipy": "1.17.1",
+    "torcwa": "0.1.4.2",
+    "matplotlib": "3.10.9"
+  },
+  "evaluation_script_sha256": "4aaa6b14c446d07ae2084dabad17e8e13da447c67fb3524f0dd1e4a97cffc36e"
+}

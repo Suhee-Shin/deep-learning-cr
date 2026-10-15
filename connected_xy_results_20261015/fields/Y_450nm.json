@@ -1,0 +1,31 @@
+{
+  "filter": "Y",
+  "wavelength_nm": 450,
+  "tx": 0.5725388307527142,
+  "ty": 0.6478581447696663,
+  "pass_transmission": 0.6478581447696663,
+  "block_transmission": 0.5725388307527142,
+  "transmission_difference": 0.07531931401695213,
+  "contrast": 0.06171706053656217,
+  "extinction_ratio_db": 0.5367497626925758,
+  "insertion_loss_db": 1.8852007698127249,
+  "leakage_rejection_db": 2.4219505325053,
+  "target_met": false,
+  "structure_sha256": "fcb0e0acee8015d5fbc1459ee7f0ac4f9ebd0db04560b32bd2646648b415194d",
+  "field_stats": {
+    "X": {
+      "mean_E2": 0.563507443069807,
+      "max_E2": 2.1071628692516673,
+      "min_E2": 0.005088540651078601,
+      "spatial_cv": 0.5752413947923369
+    },
+    "Y": {
+      "mean_E2": 0.6049508861218039,
+      "max_E2": 2.4672041434266085,
+      "min_E2": 0.012641981162398288,
+      "spatial_cv": 0.6018922619382543
+    }
+  },
+  "reference_check": null,
+  "elapsed_s": 35.06648540496826
+}

@@ -1,0 +1,26 @@
+{
+  "filter": "X",
+  "source_step": 222,
+  "array_order": "top_to_bottom_z,x,y",
+  "shape": [
+    100,
+    400,
+    400
+  ],
+  "voxel_xyz_nm": [
+    10,
+    10,
+    10
+  ],
+  "removed_voxels": 8918,
+  "filled_void_voxels": 55,
+  "changed_voxels": 8973,
+  "changed_fraction": 0.0005608125,
+  "solid_components": 1,
+  "substrate_connected": true,
+  "trapped_air_voxels": 0,
+  "all_air_connected_to_top": true,
+  "checks": "finite cell, 6-neighbor face connectivity; top-only resin exit; bottom substrate",
+  "scope": "Only connectivity and open void topology; no minimum width or mechanical stability guarantee",
+  "source_sha256": "6cba5bdf07e5aca6689f4a90309d87ddda200cb43b18122408cd48cb5daa0499"
+}

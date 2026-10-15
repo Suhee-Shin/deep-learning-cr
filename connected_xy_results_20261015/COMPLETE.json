@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "wavelengths_nm": [
+    400,
+    450,
+    500,
+    550,
+    600,
+    650,
+    700
+  ],
+  "filters": [
+    "X",
+    "Y"
+  ],
+  "independent_input_polarizations": [
+    "X",
+    "Y"
+  ],
+  "scope": "RCWA order 10, monochromatic plane waves, not FDTD or an experiment"
+}

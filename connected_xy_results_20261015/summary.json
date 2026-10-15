@@ -1,0 +1,24 @@
+[
+  {
+    "filter": "X",
+    "sample_count": 7,
+    "min_pass": 0.6065695422130559,
+    "max_block": 0.590752843298815,
+    "mean_pass": 0.7241726680989756,
+    "mean_block": 0.41056290754635594,
+    "min_er_db": 0.3183459472736034,
+    "max_il_db": 2.1711940078581757,
+    "all_samples_meet_target": false
+  },
+  {
+    "filter": "Y",
+    "sample_count": 7,
+    "min_pass": 0.560385594293812,
+    "max_block": 0.6127049079447139,
+    "mean_pass": 0.7314352062222501,
+    "mean_block": 0.3851933733911654,
+    "min_er_db": -0.3876439672428384,
+    "max_il_db": 2.515130375531431,
+    "all_samples_meet_target": false
+  }
+]
