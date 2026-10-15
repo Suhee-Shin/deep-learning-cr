@@ -1,0 +1,62 @@
+{
+  "threshold": 0.5,
+  "binary_evaluation": "filtered_threshold",
+  "fabrication_certified": false,
+  "fom": 0.3831706215744915,
+  "metrics": {
+    "min_tx": 0.775509071047964,
+    "mean_tx": 0.7906023552160383,
+    "max_ty": 0.29111706242307295,
+    "mean_ty": 0.28904299881573636,
+    "min_delta": 0.484392008624891,
+    "mean_delta": 0.5015593564003018,
+    "min_contrast": 0.45413476514828344,
+    "mean_contrast": 0.46450491774744007,
+    "min_er_db": 4.255192218141698,
+    "mean_er_db": 4.369795076487148
+  },
+  "spectrum": [
+    {
+      "wavelength_nm": 400.0,
+      "tx": 0.775509071047964,
+      "ty": 0.29111706242307295,
+      "delta": 0.484392008624891,
+      "contrast": 0.45413476514828344,
+      "er_db": 4.255192218141698
+    },
+    {
+      "wavelength_nm": 500.0,
+      "tx": 0.7870405654796516,
+      "ty": 0.29110015289880786,
+      "delta": 0.49594041258084376,
+      "contrast": 0.45999599507450745,
+      "er_db": 4.319546837012514
+    },
+    {
+      "wavelength_nm": 600.0,
+      "tx": 0.7992123648777341,
+      "ty": 0.289589605693653,
+      "delta": 0.5096227591840811,
+      "contrast": 0.46805826308032733,
+      "er_db": 4.40879224809781
+    },
+    {
+      "wavelength_nm": 700.0,
+      "tx": 0.8006474194588032,
+      "ty": 0.2843651742474116,
+      "delta": 0.5162822452113917,
+      "contrast": 0.4758306476866421,
+      "er_db": 4.495649002696569
+    }
+  ],
+  "unsupported": 30908,
+  "solid_connectivity": {
+    "solid_voxels": 7403915,
+    "solid_components": 13,
+    "grounded_components": 4,
+    "floating_voxels": 2957,
+    "connectivity_convention": "finite aperture, face contacts, substrate at last layer"
+  },
+  "objective_mode": "softmin",
+  "step": 180
+}
